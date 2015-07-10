@@ -1,4 +1,6 @@
-﻿var express = require('express');
+/*jslint node:true*/
+
+var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,6 +9,10 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var config = require('./config');
+var mongoose = require('mongoose');
+
+mongoose.connect(config.db.connString, config.db.options);
 
 var app = express();
 
@@ -23,8 +29,9 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+var api = require('./routes/api');
+
+app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -56,6 +63,5 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

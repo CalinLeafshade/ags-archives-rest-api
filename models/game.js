@@ -1,4 +1,6 @@
-﻿var mongoose = require('mongoose');
+/*global require, module */
+
+var mongoose = require('mongoose');
 
 var gameSchema = new mongoose.Schema({
     "agsid": Number,
@@ -15,4 +17,4 @@ var gameSchema = new mongoose.Schema({
 
 var game = mongoose.model('Game', gameSchema);
 
-module.exports = game
+module.exports = game;
