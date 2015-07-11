@@ -28,7 +28,6 @@ router.route('/').get(function(req,res) {
     
     if (req.query.search ) {
         gamesRepo.searchByTitle(req.query.search,  skip, count, function(err, games) {
-            console.log(games, skip, count, req.query.search);
             return res.json(games) ;
         });
     }

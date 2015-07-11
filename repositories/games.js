@@ -16,7 +16,6 @@ repo = {
         count = count || 20;
         skip = skip || 0;
         game.find({ 'name': new RegExp(term.trim(), 'i')}).skip(skip).limit(count).exec(cb);
-        //game.find({ 'name': new RegExp(term.trim(), 'i')});
     },
     findAll: function(skip, count, cb) {
         game.find().skip(skip).limit(count).exec(cb);
